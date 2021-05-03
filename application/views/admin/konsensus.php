@@ -219,6 +219,7 @@
       var t4 = [];
       var t5 = [];
       var t6 = [];
+      var stopword = [/\s+dan\s*(?=\s)|\s*\bdan\b\s*/, /\s+adalah\s*(?=\s)|\s*\badalah\b\s*/, /\s+yang\s*(?=\s)|\s*\byang\b\s*/, 'kemudian', /\s+di\s*(?=\s)|\s*\bdi\b\s*/, 'jika', /\s+maka\s*(?=\s)|\s*\bmaka\b\s*/, /\s+ini\s*(?=\s)|\s*\bini\b\s*/, /\s+itu\s*(?=\s)|\s*\bitu\b\s*/, /\s+tidak\s*(?=\s)|\s*\btidak\b\s*/, /\s+ada\s*(?=\s)|\s*\bada\b\s*/, /\s+adanya\s*(?=\s)|\s*\badanya\b\s*/, /\s+adapun\s*(?=\s)|\s*\badapun\b\s*/, /\s+agak\s*(?=\s)|\s*\bagak\b\s*/, /\s+agar\s*(?=\s)|\s*\bagar\b\s*/, /\s+akan\s*(?=\s)|\s*\bakan\b\s*/, /\s+akankah\s*(?=\s)|\s*\bakankah\b\s*/, /\s+akhir\s*(?=\s)|\s*\bakhir\b\s*/, /\s+akhiri\s*(?=\s)|\s*\bakhiri\b\s*/, /\s+akhirnya\s*(?=\s)|\s*\bakhirnya\b\s*/, /\s+apa\s*(?=\s)|\s*\bapa\b\s*/, /\s+amat\s*(?=\s)|\s*\bamat\b\s*/, /\s+amatlah\s*(?=\s)|\s*\bamatlah\b\s*/, /\s+antar\s*(?=\s)|\s*\bantar\b\s*/];
 
       var heading1 = [];
       var heading2 = [];
@@ -252,7 +253,15 @@
 
     // var table3;
     // table3 = $('#datatable-topi').DataTable();
-    
+    String.prototype.replaceArray = function(find, replace) {
+      var replaceString = this;
+      var regex; 
+      for (var i = 0; i < find.length; i++) {
+        regex = new RegExp(find[i], "g");
+        replaceString = replaceString.replace(regex, replace[i]);
+      }
+      return replaceString;
+    };
     $(document).ready( function () {
       table = $('#datatable-mantab').DataTable();  
       table.on( 'draw', function () {
@@ -348,11 +357,13 @@
             dataType:'JSON',
             success: function(hasil){
               kes = kes + 1;
-              kons1 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
+              kons1 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons1 = kons1.replaceAll(/[^a-zA-Z]/g, " ");
+              kons1 = kons1.replaceAll( /\s\s+/g, ' ');
               var pos = kons1.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
               }).join(' ');
-
+              console.log(kons1)
               un1.push(pos);
               $.each(hasil.p, function(i, item) {
                table.row.add([hasil.p[i], url1]);
@@ -384,7 +395,9 @@
             success: function(hasil){
               kes = kes + 1;
 
-              kons2 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
+                            kons2 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons2 = kons2.replaceAll(/[^a-zA-Z]/g, " ");
+              kons2 = kons2.replaceAll( /\s\s+/g, ' ');
               var pos = kons2.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
               }).join(' ');
@@ -422,8 +435,9 @@
             success: function(hasil){
               kes = kes + 1;
 
-              kons3 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
-
+                            kons3 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons3 = kons3.replaceAll(/[^a-zA-Z]/g, " ");
+              kons3 = kons3.replaceAll( /\s\s+/g, ' ');
               var pos = kons3.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
               }).join(' ');
@@ -460,8 +474,9 @@
             dataType:'JSON',
             success: function(hasil){
 
-              kons4 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
-
+                       kons4 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons4 = kons4.replaceAll(/[^a-zA-Z]/g, " ");
+              kons4 = kons4.replaceAll( /\s\s+/g, ' ');
               var pos = kons4.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
               }).join(' ');
@@ -496,7 +511,9 @@
             dataType:'JSON',
             success: function(hasil){
 
-              kons5 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
+                           kons5 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons5 = kons5.replaceAll(/[^a-zA-Z]/g, " ");
+              kons5 = kons5.replaceAll( /\s\s+/g, ' ');
 
               var pos = kons5.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
@@ -533,7 +550,9 @@
             dataType:'JSON',
             success: function(hasil){
 
-              kons6 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceAll("?", "").replaceAll(".", "").replaceAll(/[0-9]/g, "").replaceAll(/(\r\n|\n|\r|↵)/gm, " ").replaceAll( /\s\s+/g, ' ').replaceAll(",", '').replaceAll("!", '').replaceAll("&", '').replaceAll("#", '').replaceAll(":", '').replaceAll(";", '').replaceAll("(", '').replaceAll(")", '').replaceAll("%", '').replaceAll('"', "").replaceAll("'", '').toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, " ");
+                            kons6 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons6 = kons6.replaceAll(/[^a-zA-Z]/g, " ");
+              kons6 = kons6.replaceAll( /\s\s+/g, ' ');
               var pos = kons6.split(' ').filter((currentItem, i, allItems) => {
                 return i === allItems.indexOf(currentItem);
               }).join(' ');
@@ -581,7 +600,7 @@ $('#show').click(function(event) {
  var index;
  var titit = 4;
  for (index = 0, len = Object.keys(ob).length; index < len; ++index) {
-  table2.row.add([obee[index], 'jumlah', obee[index+5], 'jumlah']);
+  table2.row.add([obee[index], ob[obee[index]], obee[index+5], ob[obee[index]]]);
   if (index == titit) {
     index = index + 5;
     titit = titit + 10;
