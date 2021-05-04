@@ -529,12 +529,17 @@
 <script type="text/javascript" src="<?= site_url('assets/jquery-3.5.1.js'); ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/bootstrap-4.0.0/dist/js/bootstrap.min.js'); ?>"></script>
 
-<script type="text/javascript" src="<?= site_url('assets/DataTables/datatables.min.js'); ?>"></script>
-
 <script type="text/javascript" src="<?= site_url('assets/fitur.min.js') ?>"></script>
-<script type="text/javascript" src="<?= site_url('assets/colvis.min.js') ?>"></script>
-<script type="text/javascript" src="<?= site_url('assets/print.min.js') ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/DataTables/datatables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/dataTables.buttons.min.js') ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/jszip.min.js') ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/vfs_fonts.min.js') ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/buttons.html5.min.js') ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/print.min.js') ?>"></script>
+
+<script type="text/javascript" src="<?= site_url('assets/colvis.min.js') ?>"></script>
+<script type="text/javascript" src="<?= site_url('assets/buttons.jqueryui.min.js') ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/lodash.min.js') ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/FileSaver/src/FileSaver.js') ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/localForage/src/localforage.js') ?>"></script>
@@ -542,7 +547,6 @@
 <script src="<?= site_url('assets/ckeditor1/ckeditor.js') ?>"></script>
 <script src="<?= site_url('assets/pagination.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= site_url('assets/waterTank.js') ?>"></script>
-
 
 
 <script type="text/javascript">
@@ -651,8 +655,8 @@
      utun.push(waw)
 
      for (var q = 0; q < utun.length; q++) {
-     hadeuh += '<span style="background-color:red;padding:2px 4px;color: white;border-radius: 12px; font-size: 13px;" id="'+utun[q].replaceAll(" ", '-')+'">'+utun[q]+' 0/2 <i class="fas fa-times-circle del mt-2" style="margin-left: 1%;"></i></span> ';
-   }
+       hadeuh += '<span style="background-color:red;padding:2px 4px;color: white;border-radius: 12px; font-size: 13px;" id="'+utun[q].replaceAll(" ", '-')+'">'+utun[q]+' 0/2 <i class="fas fa-times-circle del mt-2" style="margin-left: 1%;"></i></span> ';
+     }
      document.getElementById('skut').innerHTML = hadeuh;
 
      for (var q = 0; q < utun.length; q++) {
@@ -1745,43 +1749,56 @@ permuteResultsToQueue: function(retList, search){
               pageLength: 10,
               "lengthMenu": [ 10, 25, 50, 75, 100,800],
               dom:
-              "<'row'<'col-sm-5'B><'col-sm-7'<'pull-right'p>>>" +
+              /* "<'row'<'col-sm-5'B><'col-sm-7'<'pull-right'p>>>" +
               "<'row'<'col-sm-8'i><'col-sm-4'<'pull-right'f>>>" +
-              "<'row'<'col-sm-12'tr>>",
+              "<'row'<'col-sm-12'tr>>", */
+              'Bfrtip',
               buttons: [
-              'colvis',
-              'pageLength',
               {
-               extend: 'collection',
-               text: 'Export',
-               buttons: [
-               'csvHtml5',
-               {
-                 extend: 'csvHtml5',
-                 fieldBoundary: "",
-                 text: 'Copy keywords',
-                 header: false,
-                 exportOptions: {
-                   stripNewlines: true,
-                   stripHtml: true,
-                   decodeEntities: true,
-                   columns: 1,
-                 }
-               },
-               {
-                 extend: 'csvHtml5',
-                 fieldBoundary: "",
-                 text: 'Copy visible columns',
-                 header: false,
-                 exportOptions: {
-                   columns: ':visible',
-                   stripNewlines: true,
-                   stripHtml: true,
-                   decodeEntities: true,
-                 }
-               },
-               ]
-             },
+                extend: 'copy',
+                text: 'Copy to Clipboard',
+                exportOptions: {
+                    columns: [ 1 ]
+                }
+              },
+              {
+                extend: 'excel',
+                text: 'Export Excel',
+                exportOptions: {
+                    columns: [ 1 ]
+                }
+              }
+             //  {
+             //   extend: 'collection',
+             //   text: 'Export',
+             //   buttons: [
+             //   'csvHtml5',
+             //   {
+             //     extend: 'csvHtml5',
+             //     fieldBoundary: "",
+             //     text: 'Copy keywords',
+             //     header: false,
+             //     exportOptions: {
+             //       stripNewlines: true,
+             //       stripHtml: true,
+             //       decodeEntities: true,
+             //       columns: 1,
+             //     }
+             //   },
+             //   {
+             //     extend: 'csvHtml5',
+             //     fieldBoundary: "",
+             //     text: 'Copy visible columns',
+             //     header: false,
+             //     exportOptions: {
+             //       columns: ':visible',
+             //       stripNewlines: true,
+             //       stripHtml: true,
+             //       decodeEntities: true,
+             //     }
+             //   },
+             //   ]
+             // },
 
              ],
              "columnDefs": [
@@ -1790,13 +1807,15 @@ permuteResultsToQueue: function(retList, search){
               "data": "id",
               "targets": 0,
               "visible": false,
-            }, {
+            },
+            {
               "name": "keyword",
               "title": "Analisa Intent",
               "data": "keyword",
               "responsivePriority": 1,
               "targets": 1,
-            }, {
+            },
+            {
               "title": "Length",
               "data": "length",
               "targets": 2,

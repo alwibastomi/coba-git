@@ -60,7 +60,7 @@
     </div>
     <div class="row mt-2">
       <div class="col-md-2">
-        <button class="btn btn-primary waves-effect waves-light m-b-5" id="generate" style="cursor: pointer; width: 100%"> <b>GENERATE</b></button>
+        <button class="btn btn-info waves-effect waves-light m-b-5" id="generate" style="cursor: pointer; width: 100%"> <b>GENERATE</b></button>
       </div>
     </div>
     <!-- tutup row -->

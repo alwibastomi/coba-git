@@ -94,7 +94,7 @@
   <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
     <h4 class="tx-gray-800 mg-b-5">Heading Spy</h4>
     <p class="mg-b-0">Tool Free</p>
-    <center><button class="btn btn-success" id="start" style="cursor: pointer; padding: 12px 80px;"> <b>SCRAP HEADING</b></button></center>
+    <center><button class="btn btn-info" id="start" style="cursor: pointer; padding: 12px 80px;"> <b>SCRAP HEADING</b></button></center>
   </div>
 
   <div class="br-pagebody">

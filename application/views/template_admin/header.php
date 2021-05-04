@@ -85,7 +85,12 @@
 });
 </script>
 </head>
-
+<style>
+    .btn-info{
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+</style>
 <body>
 
     <!-- ########## START: LEFT PANEL ########## -->

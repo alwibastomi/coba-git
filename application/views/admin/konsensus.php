@@ -91,7 +91,7 @@
             <input type="text" name="url" id="url6" class="form-control" placeholder="url/domain">
           </div>
           <div class="col mt-3">
-            <center><button class="btn btn-primary pd-x-30 pd-y-15 tx-uppercase tx-bold tx-spacing-6 tx-12" title="analisa" id="ani">Analisa</button> <button class="btn btn-danger pd-x-35 pd-y-15 tx-uppercase tx-bold tx-spacing-6 tx-12" title="reset url dan keyword" onclick="reset(1)">Reset</button></center>
+            <center><button class="btn btn-info pd-x-30 pd-y-15 tx-uppercase tx-bold tx-spacing-6 tx-12" title="analisa" id="ani">Analisa</button> <button class="btn btn-danger pd-x-35 pd-y-15 tx-uppercase tx-bold tx-spacing-6 tx-12" title="reset url dan keyword" onclick="reset(1)">Reset</button></center>
           </div>
         </div>
         <!-- tutup row -->
@@ -105,7 +105,7 @@
       <div class="col-md-12">
         <div class="br-pagebody">
           <div class="br-section-wrapper p-3">
-            <button class="btn btn-primary tx-uppercase tx-spacing-2 tx-12 mb-2 disabled" title="Analisa terlebih dahulu" id="show">konsensus</button> <button class="btn btn-danger tx-uppercase tx-spacing-2 tx-12 mb-2 ml-1" title="reset data" onclick="reset(2)"> Reset konsensus</button>
+            <button class="btn btn-secondary tx-uppercase tx-spacing-2 tx-12 mb-2 disabled" title="Analisa terlebih dahulu" id="show">konsensus</button> <button class="btn btn-secondary tx-uppercase tx-spacing-2 tx-12 mb-2 ml-1 disabled" id="restabel" title="reset data" onclick="reset(2)"> Reset konsensus</button>
 
             <div class="row">
               <div class="col-md-12">
@@ -299,7 +299,8 @@
         $('#keyword').val('');
       }
       if(x == 2){
-        $('#show').addClass("disabled").text('konsensus').attr('title', 'Analisa terlebih dahulu');
+        $('#show').addClass("disabled").text('konsensus');
+        $('#restabel').removeClass("btn-danger").addClass("btn-secondary").addClass("disabled");
         $('#datatable-top').DataTable().clear().draw();
         $('#datatable-mantab').DataTable().clear().draw();
         $('#popokaa').css('display', 'none');
@@ -337,7 +338,7 @@
         $('#keyword').attr("placeholder", "Isi keyword terlebih dahulu").focus();
       }
       if ($('#keyword').val() != '') {
-        $('#show').addClass('disabled').text('Sedang menganalisa konsensus').attr('title', 'sedang menganalisa');
+        $('#show').addClass('disabled').text('Sedang menganalisa konsensus').attr('title', 'sedang menganalisa').css({'background-color': 'green', 'border-color': 'green'});
         var url1 = $('#url1').val();
         var url2 = $('#url2').val();
         var url3 = $('#url3').val();
@@ -376,8 +377,8 @@
               table.draw();
               console.log(kes)
               if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
+                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+                $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
               }
             }
           });
@@ -395,7 +396,7 @@
             success: function(hasil){
               kes = kes + 1;
 
-                            kons2 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons2 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
               kons2 = kons2.replaceAll(/[^a-zA-Z]/g, " ");
               kons2 = kons2.replaceAll( /\s\s+/g, ' ');
               var pos = kons2.split(' ').filter((currentItem, i, allItems) => {
@@ -416,8 +417,8 @@
 
               console.log(kes)
               if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
+                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+                $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
               }
             }
           });
@@ -435,7 +436,7 @@
             success: function(hasil){
               kes = kes + 1;
 
-                            kons3 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons3 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
               kons3 = kons3.replaceAll(/[^a-zA-Z]/g, " ");
               kons3 = kons3.replaceAll( /\s\s+/g, ' ');
               var pos = kons3.split(' ').filter((currentItem, i, allItems) => {
@@ -455,8 +456,8 @@
 
               console.log(kes)
               if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
+                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+                $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
               }
             }
 
@@ -474,31 +475,31 @@
             dataType:'JSON',
             success: function(hasil){
 
-                       kons4 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
-              kons4 = kons4.replaceAll(/[^a-zA-Z]/g, " ");
-              kons4 = kons4.replaceAll( /\s\s+/g, ' ');
-              var pos = kons4.split(' ').filter((currentItem, i, allItems) => {
-                return i === allItems.indexOf(currentItem);
-              }).join(' ');
-              un1.push(pos);
-              $.each(hasil.p, function(i, item) {
+             kons4 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+             kons4 = kons4.replaceAll(/[^a-zA-Z]/g, " ");
+             kons4 = kons4.replaceAll( /\s\s+/g, ' ');
+             var pos = kons4.split(' ').filter((currentItem, i, allItems) => {
+              return i === allItems.indexOf(currentItem);
+            }).join(' ');
+             un1.push(pos);
+             $.each(hasil.p, function(i, item) {
                table.row.add([hasil.p[i], url4]);
              });
 
 
-              $.each(hasil.heading, function(i, item) {
+             $.each(hasil.heading, function(i, item) {
                table.row.add([hasil.heading[i], url4]);
              });            
 
-              table.draw();
-              kes = kes + 1;
-              console.log(kos)
-              if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
-              }
+             table.draw();
+             kes = kes + 1;
+             console.log(kos)
+             if (kos == kes) {
+              $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+              $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
             }
-          });
+          }
+        });
         }
 
 
@@ -511,33 +512,33 @@
             dataType:'JSON',
             success: function(hasil){
 
-                           kons5 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
-              kons5 = kons5.replaceAll(/[^a-zA-Z]/g, " ");
-              kons5 = kons5.replaceAll( /\s\s+/g, ' ');
+             kons5 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+             kons5 = kons5.replaceAll(/[^a-zA-Z]/g, " ");
+             kons5 = kons5.replaceAll( /\s\s+/g, ' ');
 
-              var pos = kons5.split(' ').filter((currentItem, i, allItems) => {
-                return i === allItems.indexOf(currentItem);
-              }).join(' ');
-              un1.push(pos);
-              $.each(hasil.p, function(i, item) {
+             var pos = kons5.split(' ').filter((currentItem, i, allItems) => {
+              return i === allItems.indexOf(currentItem);
+            }).join(' ');
+             un1.push(pos);
+             $.each(hasil.p, function(i, item) {
                table.row.add([hasil.p[i], url5]);
              });
 
 
-              $.each(hasil.heading, function(i, item) {
+             $.each(hasil.heading, function(i, item) {
                table.row.add([hasil.heading[i], url5]);
              });           
 
-              table.draw();
-              kes = kes + 1;
-              console.log(kos)
+             table.draw();
+             kes = kes + 1;
+             console.log(kos)
 
-              if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
-              }
+             if (kos == kes) {
+              $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+              $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
             }
-          });
+          }
+        });
         }
 
 
@@ -550,7 +551,7 @@
             dataType:'JSON',
             success: function(hasil){
 
-                            kons6 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
+              kons6 = hasil.p.concat(hasil.heading, hasil.title).join(" ").replaceArray(stopword, '').replaceAll('undefined', '');
               kons6 = kons6.replaceAll(/[^a-zA-Z]/g, " ");
               kons6 = kons6.replaceAll( /\s\s+/g, ' ');
               var pos = kons6.split(' ').filter((currentItem, i, allItems) => {
@@ -571,8 +572,8 @@
               kes = kes + 1;
               console.log(kos)
               if (kos == kes) {
-                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus');
-                
+                $('#show').removeClass("disabled").text('lihat konsensus').attr('title', 'klik untuk melihat konsensus').css({'background-color': '#17a2b8', 'border-color': '#17a2b8'});
+                $('#restabel').removeClass("disabled btn-secondary").addClass("btn-danger");
               }
             }
           });
@@ -582,6 +583,7 @@
     });
 
 $('#show').click(function(event) {
+  $.fn.dataTable.ext.errMode = 'none';
   $('#konsensus').html('');
   $('#popokaa').css('display', 'block');
   // $('#popokii').css('display', 'block');

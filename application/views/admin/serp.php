@@ -50,7 +50,7 @@
         <input type="text" name="halaman" id="halaman" class="form-control" placeholder="berapa halaman" required>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-primary waves-effect waves-light m-b-5" id="start" style="cursor: pointer; width: 100%"> <b>SCRAP URL</b></button>
+        <button class="btn btn-info waves-effect waves-light m-b-5" id="start" style="cursor: pointer; width: 100%"> <b>SCRAP URL</b></button>
       </div>
     </div>
     <!-- tutup row -->
