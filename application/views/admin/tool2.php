@@ -550,7 +550,7 @@
 
 
 <script type="text/javascript">
-  // var uru = "<?= site_url("Trend/pos") ?>";
+  var uru = "<?= site_url("Trend/pos") ?>";
 
   $('#btnLeftMenuLele').on('click', function(){
     $('body').addClass('show-left');
@@ -1066,7 +1066,7 @@ var KWS = function(){
       $.ajax({
         type:'POST',
         data:'Kword='+indah,
-        url:'<?= site_url("Trend/pos") ?>',
+        url:uru,
         dataType:'JSON',
         success: function(hasil){
           t = 0;
@@ -1366,266 +1366,264 @@ permuteResultsToQueue: function(retList, search){
   function addSuffix(s,suffix){
     return s+' '+suffix;
   }
-            // clean
-            retList=_.map(retList,this.CleanVal);
+  retList=_.map(retList,this.CleanVal);
 
-            // get permutations
-            var newInputs = retList.reduce(function(result, keyword){
-              return _.concat(
-                result,
-                _.map(options.prefixes,addPrefix.bind(self,keyword)),
-                _.map(options.suffixes,addSuffix.bind(self,keyword))
-                );
-            }, []);
+  var newInputs = retList.reduce(function(result, keyword){
+    return _.concat(
+      result,
+      _.map(options.prefixes,addPrefix.bind(self,keyword)),
+      _.map(options.suffixes,addSuffix.bind(self,keyword))
+      );
+  }, []);
 
-            this.keywordsToQuery=_.concat(this.keywordsToQuery,newInputs);
+  this.keywordsToQuery=_.concat(this.keywordsToQuery,newInputs);
 
-            return newInputs;
-          },
+  return newInputs;
+},
 
 
-          displayResults: function(retList, search, dontDisplay, url,data){
+displayResults: function(retList, search, dontDisplay, url,data){
 
-            var rows=[];
-            retList=_.map(retList,this.CleanVal);
+  var rows=[];
+  retList=_.map(retList,this.CleanVal);
 
-            for (var i = 0; i < retList.length; i++) {
-              sendok = sendok + 1;
-              var  cleanKw = retList[i];
-
-
-              if (url===undefined) url=data[i].url;
-
-              arr = cleanKw.split(" ");
-              for (var y = 0; y < arr.length; y++) {
-                if (isNaN(arr[y])) {
-
-                  if (lol.indexOf(arr[y]) < 0) {
-                    lol.push(arr[y].replaceAll("'", "luoyi"));
-                  }
-                  haha.push(arr[y].replaceAll("'", "luoyi"));
-                }
-              }
+  for (var i = 0; i < retList.length; i++) {
+    sendok = sendok + 1;
+    var  cleanKw = retList[i];
 
 
-              var da = {
-                id: this.table.rows()[0].length+i,
-                keyword: cleanKw,
-                length: cleanKw.length,
-                words: cleanKw.trim().split(/ +/).length,
-                domain: this.extractDomain(url)
-              };
+    if (url===undefined) url=data[i].url;
 
-              da = _.mapValues(da, function(v){return v===undefined ? null: v;});
+    arr = cleanKw.split(" ");
+    for (var y = 0; y < arr.length; y++) {
+      if (isNaN(arr[y])) {
 
-              rows.push(da);
-            }
-
-
-            Object.size = function(obj) {
-              var size = 0,
-              key;
-              for (key in obj) {
-                if (obj.hasOwnProperty(key)) size++;
-              }
-              return size;
-            };
-            $('#myBar').html('Mengumpulkan keyword...'+sendok).css({'background-color': '#1d2939', 'color': 'white'})
+        if (lol.indexOf(arr[y]) < 0) {
+          lol.push(arr[y].replaceAll("'", "luoyi"));
+        }
+        haha.push(arr[y].replaceAll("'", "luoyi"));
+      }
+    }
 
 
-            this.table.rows.add(rows);
+    var da = {
+      id: this.table.rows()[0].length+i,
+      keyword: cleanKw,
+      length: cleanKw.length,
+      words: cleanKw.trim().split(/ +/).length,
+      domain: this.extractDomain(url)
+    };
+
+    da = _.mapValues(da, function(v){return v===undefined ? null: v;});
+
+    rows.push(da);
+  }
 
 
-            if (!dontDisplay && this.table.data().length<this.options.deferTableUpdatesAtRows) this.table.draw(false);
+  Object.size = function(obj) {
+    var size = 0,
+    key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+  $('#myBar').html('Mengumpulkan keyword...'+sendok).css({'background-color': '#1d2939', 'color': 'white'})
+
+
+  this.table.rows.add(rows);
+
+
+  if (!dontDisplay && this.table.data().length<this.options.deferTableUpdatesAtRows) this.table.draw(false);
 
 
 
 
 
 
-          },
+},
 
 
-          extractDomain: function(url) {
-            if (url===undefined) return null;
-            var domain;
-            if (url.indexOf("://") > -1) {
-              domain = url.split('/')[2];
-            }
-            else {
-              domain = url.split('/')[0];
-            }
+extractDomain: function(url) {
+  if (url===undefined) return null;
+  var domain;
+  if (url.indexOf("://") > -1) {
+    domain = url.split('/')[2];
+  }
+  else {
+    domain = url.split('/')[0];
+  }
 
-            domain = domain.split(':')[0];
+  domain = domain.split(':')[0];
 
-            var mr = url.match('ds=(..?)&');
-            if (mr && mr[1] && mr[1].length) domain+='&ds='+mr[1];
+  var mr = url.match('ds=(..?)&');
+  if (mr && mr[1] && mr[1].length) domain+='&ds='+mr[1];
 
-            var mr = url.match('gl=(..?)&');
-            if (mr && mr[1] && mr[1].length) domain+='&gl='+mr[1];
+  var mr = url.match('gl=(..?)&');
+  if (mr && mr[1] && mr[1].length) domain+='&gl='+mr[1];
 
-            var mr = url.match('hl=(..?)&');
-            if (mr && mr[1] && mr[1].length) domain+='&hl='+mr[1];
+  var mr = url.match('hl=(..?)&');
+  if (mr && mr[1] && mr[1].length) domain+='&hl='+mr[1];
 
-            var mr = url.match('uil=(..?)&');
-            if (mr && mr[1] && mr[1].length) domain+='&uil='+mr[1];
+  var mr = url.match('uil=(..?)&');
+  if (mr && mr[1] && mr[1].length) domain+='&uil='+mr[1];
 
-            return domain;
-          },
+  return domain;
+},
 
-          markAsDone: function(search){
-            if (this.keywordsToQuery[this.keywordsToQueryIndex]===search)
-              this.keywordsToQuery[this.keywordsToQueryIndex]+='   ';
-            else if (this.keywordsToQuery[this.keywordsToQueryIndex-1]===search)
-              this.keywordsToQuery[this.keywordsToQueryIndex-1]+='   ';
-            else
-              console.warn('Cant find ',search,'in keywordsToQuery');
-          },
+markAsDone: function(search){
+  if (this.keywordsToQuery[this.keywordsToQueryIndex]===search)
+    this.keywordsToQuery[this.keywordsToQueryIndex]+='   ';
+  else if (this.keywordsToQuery[this.keywordsToQueryIndex-1]===search)
+    this.keywordsToQuery[this.keywordsToQueryIndex-1]+='   ';
+  else
+    console.warn('Cant find ',search,'in keywordsToQuery');
+},
 
-          markAsNone: function(search){
-            if (this.keywordsToQuery[this.keywordsToQueryIndex]===search)
-              this.keywordsToQuery[this.keywordsToQueryIndex]+='   ';
-            else if (this.keywordsToQuery[this.keywordsToQueryIndex-1]===search)
-              this.keywordsToQuery[this.keywordsToQueryIndex-1]+='   ';
-            else
-              console.warn('Cant find ',search,'in keywordsToQuery');
-          },
+markAsNone: function(search){
+  if (this.keywordsToQuery[this.keywordsToQueryIndex]===search)
+    this.keywordsToQuery[this.keywordsToQueryIndex]+='   ';
+  else if (this.keywordsToQuery[this.keywordsToQueryIndex-1]===search)
+    this.keywordsToQuery[this.keywordsToQueryIndex-1]+='   ';
+  else
+    console.warn('Cant find ',search,'in keywordsToQuery');
+},
 
-          QueryKeyword: function(search) {
-            var self = this;
-            this.queryLock = true;
+QueryKeyword: function(search) {
+  var self = this;
+  this.queryLock = true;
 
-            url = self.getUrl()+search;
-            var promise = $.ajax({
-              url: url,
-              dataType: "jsonp",
-              success: function (res, statusText, jqXHR) {
-                var retList = self.parseServiceResponse(res);
-                if (retList && retList.length){
-                  self.displayResults(retList, search, undefined, this.url);
-                  self.addResultsToQueue(retList);
-                  if (self.options.keepRunning) self.permuteResultsToQueue(retList);
-                  self.markAsDone(search);
-                } else {
-                  self.markAsNone(search);
-                }
-                self.queryLock = false;
-                return;
+  url = self.getUrl()+search;
+  var promise = $.ajax({
+    url: url,
+    dataType: "jsonp",
+    success: function (res, statusText, jqXHR) {
+      var retList = self.parseServiceResponse(res);
+      if (retList && retList.length){
+        self.displayResults(retList, search, undefined, this.url);
+        self.addResultsToQueue(retList);
+        if (self.options.keepRunning) self.permuteResultsToQueue(retList);
+        self.markAsDone(search);
+      } else {
+        self.markAsNone(search);
+      }
+      self.queryLock = false;
+      return;
 
-              },
-              error: function(jqXHR,errorText,error){
-                console.error(errorText,this.url,this,jqXHR,error);
-                self.queryLock = false;
-                return;
-              },
-              callback: function(){
-                console.log(this,arguments);
-              }
-            });
-            return promise;
-          },
+    },
+    error: function(jqXHR,errorText,error){
+      console.error(errorText,this.url,this,jqXHR,error);
+      self.queryLock = false;
+      return;
+    },
+    callback: function(){
+      console.log(this,arguments);
+    }
+  });
+  return promise;
+},
 
-          CleanVal: function(input) {
-            input=$('<div />').html(input).text();
+CleanVal: function(input) {
+  input=$('<div />').html(input).text();
 
-            input = input.toLowerCase();
+  input = input.toLowerCase();
 
-            if (input.length > 4 && input.substring(0, 4) == "http") input = "";
+  if (input.length > 4 && input.substring(0, 4) == "http") input = "";
 
-            return input;
-          },
+  return input;
+},
 
-          Filter: function(listToFilter) {
-            var retList = listToFilter;
+Filter: function(listToFilter) {
+  var retList = listToFilter;
 
-            if ($("#filter-positive").val().length > 0) {
-              var filteredList = [];
-              var filterContains = $("#filter-positive").val().split("\n");
-              for (var i = 0; i < retList.length; i++) {
-                var currentKeyword = retList[i];
-                var boolContainsKeyword = false;
-                for (var j = 0; j < filterContains.length; j++) {
-                  if (filterContains[j].length > 0) {
-                    if (currentKeyword.indexOf(filterContains[j]) != -1) {
-                      boolContainsKeyword = true;
-                      break;
-                    }
-                  }
-                }
+  if ($("#filter-positive").val().length > 0) {
+    var filteredList = [];
+    var filterContains = $("#filter-positive").val().split("\n");
+    for (var i = 0; i < retList.length; i++) {
+      var currentKeyword = retList[i];
+      var boolContainsKeyword = false;
+      for (var j = 0; j < filterContains.length; j++) {
+        if (filterContains[j].length > 0) {
+          if (currentKeyword.indexOf(filterContains[j]) != -1) {
+            boolContainsKeyword = true;
+            break;
+          }
+        }
+      }
 
-                if (boolContainsKeyword) {
-                  filteredList[filteredList.length] = currentKeyword;
-                }
-              }
+      if (boolContainsKeyword) {
+        filteredList[filteredList.length] = currentKeyword;
+      }
+    }
 
-              retList = filteredList;
-            }
+    retList = filteredList;
+  }
 
-            if ($("#filter-negative").val().length > 0) {
-              var filteredList = [];
-              var filterContains = $("#filter-negative").val().split("\n");
-              for (var l = 0; l < retList.length; l++) {
-                var currentKeyword = retList[l];
-                var boolCleanKeyword = true;
-                for (var k = 0; k < filterContains.length; k++) {
-                  if (filterContains[k].length > 0) {
-                    if (currentKeyword.indexOf(filterContains[k]) >= 0) {
-                      boolCleanKeyword = false;
-                      break;
-                    }
-                  }
-                }
+  if ($("#filter-negative").val().length > 0) {
+    var filteredList = [];
+    var filterContains = $("#filter-negative").val().split("\n");
+    for (var l = 0; l < retList.length; l++) {
+      var currentKeyword = retList[l];
+      var boolCleanKeyword = true;
+      for (var k = 0; k < filterContains.length; k++) {
+        if (filterContains[k].length > 0) {
+          if (currentKeyword.indexOf(filterContains[k]) >= 0) {
+            boolCleanKeyword = false;
+            break;
+          }
+        }
+      }
 
-                if (boolCleanKeyword) {
-                  filteredList[filteredList.length] = currentKeyword;
-                }
-              }
+      if (boolCleanKeyword) {
+        filteredList[filteredList.length] = currentKeyword;
+      }
+    }
 
-              retList = filteredList;
-            }
+    retList = filteredList;
+  }
 
-            return retList;
-          },
+  return retList;
+},
 
-          FilterAndDisplay: function() {
-            var i = 0;
-            var sb = '';
+FilterAndDisplay: function() {
+  var i = 0;
+  var sb = '';
 
-            var outputKeywords = this.keywordsToQuery;
-            for (i = 0; i < Math.min(outputKeywords.length,this.options.maxQueueDisplay); i++) {
-              sb += outputKeywords[i];
-              sb += '\n';
-            }
-            if (outputKeywords.length>this.options.maxQueueDisplay) sb+='...\n';
-            $("#input").val(sb);
-            $("#numofkeywords").html('Queue:' + outputKeywords.length);
-          },
+  var outputKeywords = this.keywordsToQuery;
+  for (i = 0; i < Math.min(outputKeywords.length,this.options.maxQueueDisplay); i++) {
+    sb += outputKeywords[i];
+    sb += '\n';
+  }
+  if (outputKeywords.length>this.options.maxQueueDisplay) sb+='...\n';
+  $("#input").val(sb);
+  $("#numofkeywords").html('Queue:' + outputKeywords.length);
+},
 
 
-          getOptions: function(argOptions){
-            var defaultOptions={
-              deferTableUpdatesAtRows: 5000,
-              keepRunning: false,
-              maxQueueDisplay: 5000,
-              country: "",
-              filterNegative: "",
-              filterPositive: "",
-              lang: "",        
-              prefixes: [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "y", "z", "*"],
-              rateLimit: 750,
-              service: "google",
-              suffixes: [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "y", "z", "*"]
-            }; 
-            if (argOptions===undefined) argOptions={};
-            return _.defaults(argOptions,this.getDomOptions(),defaultOptions);
-          },
+getOptions: function(argOptions){
+  var defaultOptions={
+    deferTableUpdatesAtRows: 5000,
+    keepRunning: false,
+    maxQueueDisplay: 5000,
+    country: "",
+    filterNegative: "",
+    filterPositive: "",
+    lang: "",        
+    prefixes: [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "y", "z", "*"],
+    rateLimit: 750,
+    service: "google",
+    suffixes: [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "y", "z", "*"]
+  }; 
+  if (argOptions===undefined) argOptions={};
+  return _.defaults(argOptions,this.getDomOptions(),defaultOptions);
+},
 
-          getDomOptions: function(){
+getDomOptions: function(){
 
-            var service= $('#service').val(),
-            filterNegative = $('#filter-negative').val(),
-            filterPositive = $('#filter-positive').val(),
-            rateLimit = parseInt($('#rate-limit').val()),
+  var service= $('#service').val(),
+  filterNegative = $('#filter-negative').val(),
+  filterPositive = $('#filter-positive').val(),
+  rateLimit = parseInt($('#rate-limit').val()),
                 // input: $('#input').val(),
                 prefixes = $('#prefixes').val(),
                 suffixes = $('#suffixes').val(),
@@ -1740,140 +1738,104 @@ permuteResultsToQueue: function(retList, search){
                 $('#progress1').addClass('progressjs-progress');
                 this.progress1 = progressJs("#progress1");
 
-            // bind buttons
-            $('#startjob').on('click',this.toggleWork.bind(this));
-            $('#reset').on('click',this.reset.bind(this));
+                $('#startjob').on('click',this.toggleWork.bind(this));
+                $('#reset').on('click',this.reset.bind(this));
 
-            // setup table
-            this.table = $('#outtable').DataTable({
-              pageLength: 10,
-              "lengthMenu": [ 10, 25, 50, 75, 100,800],
-              dom:
-              /* "<'row'<'col-sm-5'B><'col-sm-7'<'pull-right'p>>>" +
-              "<'row'<'col-sm-8'i><'col-sm-4'<'pull-right'f>>>" +
-              "<'row'<'col-sm-12'tr>>", */
-              'Bfrtip',
-              buttons: [
-              {
-                extend: 'copy',
-                text: 'Copy to Clipboard',
-                exportOptions: {
-                    columns: [ 1 ]
-                }
-              },
-              {
-                extend: 'excel',
-                text: 'Export Excel',
-                exportOptions: {
-                    columns: [ 1 ]
-                }
+                this.table = $('#outtable').DataTable({
+                  pageLength: 10,
+                  "lengthMenu": [ 10, 25, 50, 75, 100,800],
+                  dom:
+                  'Bfrtip',
+                  buttons: [
+                  {
+                    extend: 'copy',
+                    text: 'Copy to Clipboard',
+                    exportOptions: {
+                      columns: [ 1 ]
+                    }
+                  },
+                  {
+                    extend: 'excel',
+                    text: 'Export Excel',
+                    exportOptions: {
+                      columns: [ 1 ]
+                    }
+                  }
+
+                  ],
+                  "columnDefs": [
+                  {
+                    "title": "id",
+                    "data": "id",
+                    "targets": 0,
+                    "visible": false,
+                  },
+                  {
+                    "name": "keyword",
+                    "title": "Analisa Intent",
+                    "data": "keyword",
+                    "responsivePriority": 1,
+                    "targets": 1,
+                  },
+                  {
+                    "title": "Length",
+                    "data": "length",
+                    "targets": 2,
+                    "visible": false,
+                    "type": "num"
+                  },  {
+                    "title": "Words",
+                    "data": "words",
+                    "targets": 3,
+                    "visible": false,
+                    "type": "num"
+                  },
+                  ],
+                  order: [[ 0, 'desc' ]],
+                  stateSave: true,
+                  "bDeferRender": true,
+
+                });
+
+                $.getJSON('https://api.ipify.org?format=json', function (data) {
+                  this.myIp = data.ip;
+                });
+
               }
-             //  {
-             //   extend: 'collection',
-             //   text: 'Export',
-             //   buttons: [
-             //   'csvHtml5',
-             //   {
-             //     extend: 'csvHtml5',
-             //     fieldBoundary: "",
-             //     text: 'Copy keywords',
-             //     header: false,
-             //     exportOptions: {
-             //       stripNewlines: true,
-             //       stripHtml: true,
-             //       decodeEntities: true,
-             //       columns: 1,
-             //     }
-             //   },
-             //   {
-             //     extend: 'csvHtml5',
-             //     fieldBoundary: "",
-             //     text: 'Copy visible columns',
-             //     header: false,
-             //     exportOptions: {
-             //       columns: ':visible',
-             //       stripNewlines: true,
-             //       stripHtml: true,
-             //       decodeEntities: true,
-             //     }
-             //   },
-             //   ]
-             // },
+            };
+          }();
 
-             ],
-             "columnDefs": [
-             {
-              "title": "id",
-              "data": "id",
-              "targets": 0,
-              "visible": false,
-            },
-            {
-              "name": "keyword",
-              "title": "Analisa Intent",
-              "data": "keyword",
-              "responsivePriority": 1,
-              "targets": 1,
-            },
-            {
-              "title": "Length",
-              "data": "length",
-              "targets": 2,
-              "visible": false,
-              "type": "num"
-            },  {
-              "title": "Words",
-              "data": "words",
-              "targets": 3,
-              "visible": false,
-              "type": "num"
-            },
-            ],
-            order: [[ 0, 'desc' ]],
-            stateSave: true,
-            "bDeferRender": true,
 
-          });
 
-            $.getJSON('https://api.ipify.org?format=json', function (data) {
-              this.myIp = data.ip;
+
+          var close = document.getElementsByClassName("delete");
+          var i;
+
+          for (i = 0; i < close.length; i++) {
+            close[i].addEventListener("click", function() {
+              this.parentElement.style.display = 'none';
             });
-
           }
-        };
-      }();
 
+        </script>
+        <!--     <script src="<?= site_url('assets/t2.js'); ?>"></script> -->
 
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+          ga('create', 'UA-51809277-6', 'auto');
+          ga('send', 'pageview');
 
-      var close = document.getElementsByClassName("delete");
-      var i;
+        </script>
+        <script>
+          $(document).ready(function () {
+            KWS.init();
+          });
+        </script>
 
-      for (i = 0; i < close.length; i++) {
-        close[i].addEventListener("click", function() {
-          this.parentElement.style.display = 'none';
-        });
-      }
+      </body>
 
-    </script>
-    <!--     <script src="<?= site_url('assets/t2.js'); ?>"></script> -->
-
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-51809277-6', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-    <script>
-      $(document).ready(function () {
-        KWS.init();
-      });
-    </script>
-
-  </body>
-
-  </html>
+      </html>

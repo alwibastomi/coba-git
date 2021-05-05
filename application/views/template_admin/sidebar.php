@@ -80,7 +80,7 @@
     </a><!-- br-menu-link -->
     <a href="<?= site_url('Tool/Semantic') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Semantic"){echo "active";}?>">
       <div class="br-menu-item">
-        <i class="menu-item fa fa-database tx-20"></i>
+        <i class="menu-item fa fa-server tx-20"></i>
         <span class="menu-item-label">Semantic Tool</span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
@@ -92,19 +92,19 @@
     </a><!-- br-menu-link -->
     <a href="<?= site_url('Tool/Rank') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Rank"){echo "active";}?>">
       <div class="br-menu-item">
-        <i class="menu-item fa fa-sitemap tx-20"></i>
+        <i class="menu-item fa fa-sticky-note tx-20"></i>
         <span class="menu-item-label">SERP Analyzer</span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
     <a href="<?= site_url('Tool/Tracker') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Tracker"){echo "active";}?>">
       <div class="br-menu-item">
-        <i class="menu-item fa fa-sitemap tx-20"></i>
+        <i class="menu-item fa fa-book tx-20"></i>
         <span class="menu-item-label">Tracker</span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
     <a href="<?= site_url('Tool/Konsensus') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Konsensus"){echo "active";}?>">
       <div class="br-menu-item">
-        <i class="menu-item fa fa-sitemap tx-20"></i>
+        <i class="menu-item fa fa-database tx-20"></i>
         <span class="menu-item-label">Konsensus</span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
