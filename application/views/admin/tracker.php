@@ -92,9 +92,9 @@
 
 
   <script type="text/javascript">
-    var t = 0;
     var xyz ='<?= site_url('Tool/List_url') ?>';
     var au = '<?= site_url('Tool/List_tracker') ?>';
+    var t = 0;
     $('.datatable-mantab').DataTable({
       responsive: true,
       searching: false,
@@ -109,79 +109,5 @@
     });
   </script>
 
-  <script>
-    var novina = [];
-    var nona = 0;
-    function extractHostname(url) {
-      var hostname;
-
-      if (url.indexOf("//") > -1) {
-        hostname = url.split('/')[2];
-      }
-      else {
-        hostname = url.split('/')[0];
-      }
-
-      hostname = hostname.split(':')[0];
-      hostname = hostname.split('?')[0];
-
-      return hostname;
-    }
-    function extractRootDomain(url) {
-      var domain = extractHostname(url),
-      splitArr = domain.split('.'),
-      arrLen = splitArr.length;
-
-      if (arrLen > 2) {
-        domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
-        if (splitArr[arrLen - 2].length == 2 && splitArr[arrLen - 1].length == 2) {
-          domain = splitArr[arrLen - 3] + '.' + domain;
-        }
-      }
-      return domain;
-    }
-    function telo(id) {
-      if (event.keyCode === 13) {
-        nona = nona + 1;
-        $('#ts').append('<tr><td><input class="form-control" id="'+nona+'" onkeyup="telo(this)" type="text" placeholder="Keyword"> </td><td class="tengah"></td><td style="white-space: normal"></td></tr>');
-        $('#'+nona).focus();
-      }
-
-    }
-
-    $('#generate').on('click', function(){
-
-      var novina = []
-      var pete = "";
-      var hal = 5;
-      if($('#0').val() == ""){
-        $('#ts').html("");
-      }
-      for (var i = 0; i < $('#srep').val().split("\n").length; i++) {
-
-        for (var x = 0; x < hal ; x++) {
-          $.ajax({
-            type:'POST',
-            data:'url1='+extractRootDomain($('#url').val())+'&keyword='+$('#srep').val().split("\n")[i]+'&halaman='+x,
-            url:au,
-            dataType:'JSON',
-            success: function(hasil){
-              console.log(hasil.rank);
-              console.log(hasil.url);
-              if (hasil.rank.length > 0) {
-                for (var z = 0; z < hasil.rank.length; z++) {
-                 $('#ts').append('<tr><td><input class="form-control" id="'+nona+'" onkeyup="telo(this)" type="text" placeholder="Keyword" value="'+hasil.keyword+'"> </td><td class="tengah">'+hasil.rank[z]+'</td><td style="white-space: normal">'+hasil.url[z]+'</td></tr>')
-               }
-             }
-
-
-             nona = nona + 1;
-
-             novina.push($('#srep').val().split("\n")[i])
-           }
-         });
-        }
-      }
-      console.log()
-    });
-  </script>
+  
+<script src="<?= site_url('assets/t5.js'); ?>"></script>

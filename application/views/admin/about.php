@@ -10,7 +10,7 @@
 
         <div class="col-sm-12">
           <label>About</label>
-          <p>Tool semantic article dibuat untuk membantu para SEO untuk bisa membuat artikel yang lebih lengkap, lebih menjawab intent, dan bisa merangking lebih banyak keyword. 
+          <p>Tool Keyword Raja dibuat untuk membantu para SEO untuk bisa membuat artikel yang lebih lengkap, lebih menjawab intent, dan bisa merangking lebih banyak keyword. 
           Pengembang tool ini adalah Aqil Da Fortress</p>
         </div>
 

@@ -18,7 +18,7 @@
               <div class="col-3 tx-12">Email</div><!-- col-3 -->
               <div class="col-9">
                 <div class="rounded-0 mg-b-0">
-                  <div class="wd-50p lh-3">: <?= $email ?></div>
+                  <div class="wd-50p lh-3">:  $email </div>
                 </div><!-- progress -->
               </div><!-- col-9 -->
             </div><!-- row -->
@@ -26,7 +26,7 @@
               <div class="col-3 tx-12">Password</div><!-- col-3 -->
               <div class="col-9">
                 <div class="rounded-0 mg-b-0">
-                  <div class="wd-50p lh-3">: <?= $password ?> <a href="#profile" class="btn btn-oblong btn-info bd-2 pt-0 pb-0"> Ubah </a></div>
+                  <div class="wd-50p lh-3">:  $password  <a href="#profile" class="btn btn-oblong btn-info bd-2 pt-0 pb-0"> Ubah </a></div>
                 </div><!-- progress -->
               </div><!-- col-9 -->
             </div><!-- row -->

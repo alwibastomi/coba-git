@@ -75,10 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => 'localhost',
+	// 'username' => 'toolsema_kaptenads',
+ //    'password' => 'Indomaret17ibnuaqilimron',
+ //    'database' => 'toolsema_dbsemantic',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'db_saas',
+	'database' => 'db_keyraja',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

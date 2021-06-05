@@ -15,18 +15,18 @@
       <div class="dropdown">
         <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
           <!-- <span class="logged-name hidden-md-down"><?= $nama ?></span> -->
-          <span class="logged-name hidden-md-down">Publik</span>
+          <span class="logged-name hidden-md-down"><?= $username ?></span>
           <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
           <span class="square-10 bg-success"></span>
         </a>
-<!--         <div class="dropdown-menu dropdown-menu-header wd-200">
+        <div class="dropdown-menu dropdown-menu-header wd-200">
           <ul class="list-unstyled user-profile-nav">
             <li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>
             <li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
             <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
             <li><a href="<?= site_url('Login/logout') ?>"><i class="icon ion-power"></i> Sign Out</a></li>
           </ul>
-        </div> -->
+        </div>
         <!-- dropdown-menu -->
       </div>
       <!-- dropdown -->
@@ -456,35 +456,35 @@
     </div>
   </div><!-- modal-dialog -->
 </div><!-- modal -->
-<script src="<?= site_url('assets/template/lib/jquery/jquery.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/popper.js/popper.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/bootstrap/bootstrap.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/moment/moment.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/jquery-ui/jquery-ui.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/jquery-switchbutton/jquery.switchButton.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/jquery/jquery.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/popper.js/popper.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/bootstrap/bootstrap.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/moment/moment.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/jquery-ui/jquery-ui.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/jquery-switchbutton/jquery.switchButton.js'); ?>"></script>
 
-<script type="text/javascript" src="<?= site_url('assets/bootstrap-select/dist/js/bootstrap-select.min.js') ?>"></script>
-<!-- Datatable -->
-<script src="<?= site_url('assets/template/lib/datatables/jquery.dataTables.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/datatables-responsive/dataTables.responsive.js'); ?>"></script>
-<script src="<?= site_url('assets/customm.js'); ?>"></script>
-<!-- datatable -->
+    <script type="text/javascript" src="<?= site_url('assets/bootstrap-select/dist/js/bootstrap-select.min.js') ?>"></script>
+    <!-- Datatable -->
+    <script src="<?= site_url('assets/template/lib/datatables/jquery.dataTables.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/datatables-responsive/dataTables.responsive.js'); ?>"></script>
+    <script src="<?= site_url('assets/customm.js'); ?>"></script>
+    <!-- datatable -->
 
-<script src="<?= site_url('assets/template/lib/peity/jquery.peity.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/chartist/chartist.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/jquery.sparkline.bower/jquery.sparkline.min.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/d3/d3.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/rickshaw/rickshaw.min.js'); ?>"></script>
-<script src="<?= site_url('assets/template/lib/select2/js/select2.min.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/peity/jquery.peity.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/chartist/chartist.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/jquery.sparkline.bower/jquery.sparkline.min.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/d3/d3.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/rickshaw/rickshaw.min.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/lib/select2/js/select2.min.js'); ?>"></script>
 
 
-<script src="<?= site_url('assets/template/js/bracket.js'); ?>"></script>
-<script src="<?= site_url('assets/template/js/ResizeSensor.js'); ?>"></script>
-<script src="<?= site_url('assets/template/js/dashboard.js'); ?>"></script>
-<script>
-  $(function(){
-    'use strict'
+    <script src="<?= site_url('assets/template/js/bracket.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/js/ResizeSensor.js'); ?>"></script>
+    <script src="<?= site_url('assets/template/js/dashboard.js'); ?>"></script>
+    <script>
+      $(function(){
+        'use strict'
 
         // FOR DEMO ONLY
         // menu collapsed by default during first page load or refresh with screen
@@ -492,7 +492,7 @@
         // for better viewing of widgets demo.
         $(window).resize(function(){
           minimizeMenu();
-        });
+      });
 
         minimizeMenu();
 
@@ -502,11 +502,11 @@
             $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
             $('body').addClass('collapsed-menu');
             $('.show-sub + .br-menu-sub').slideUp();
-          } else if(window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
+        } else if(window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
             $('.menu-item-label,.menu-item-arrow').removeClass('op-lg-0-force d-lg-none');
             $('body').removeClass('collapsed-menu');
             $('.show-sub + .br-menu-sub').slideDown();
-          }
         }
-      });
-    </script>
+    }
+});
+</script>

@@ -9,7 +9,7 @@
     <meta name="description" content="semanticarticle.com">
     <meta name="author" content="ThemePixels">
 
-    <title>Semantic Article | Login</title>
+    <title>Semantic Article | <?= $this->uri->segment(1) ?></title>
     <link rel="icon" href="<?= site_url('assets/images/Logo-01.png') ?>">
 
     <!-- vendor css -->
@@ -21,3 +21,11 @@
 </head>
 
 <body>
+
+<style>
+    .btn{
+        cursor: pointer;
+    }
+</style>
+
+    <script src="<?= site_url('assets/template/lib/jquery/jquery.js'); ?>"></script>

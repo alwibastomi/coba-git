@@ -68,7 +68,7 @@
     margin-top:1em;
   }
 </style>
-<div class="br-logo"><a href="<?= site_url('Dashboard') ?>"><img src="<?= site_url('assets/images/Logo-03.png') ?>" alt="" width="200"></a></div>
+<div class="br-logo"><a href="<?= site_url('Dashboard') ?>"><img src="<?= site_url('assets/images/Logo-03.png') ?>" alt="" width="190"></a></div>
 <div class="br-sideleft overflow-y-auto">
   <label class="sidebar-label pd-x-15 mg-t-20">Menu</label>
   <div class="br-sideleft-menu">
@@ -96,18 +96,18 @@
         <span class="menu-item-label">SERP Analyzer</span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
-    <a href="<?= site_url('Tool/Tracker') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Tracker"){echo "active";}?>">
+    <!--<a href="<?= site_url('Tool/Tracker') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Tracker"){echo "active";}?>">
       <div class="br-menu-item">
         <i class="menu-item fa fa-book tx-20"></i>
         <span class="menu-item-label">Tracker</span>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
+      </div>
+    </a>
     <a href="<?= site_url('Tool/Konsensus') ?>" class="br-menu-link <?php if($this->uri->segment(2)=="Konsensus"){echo "active";}?>">
       <div class="br-menu-item">
         <i class="menu-item fa fa-database tx-20"></i>
         <span class="menu-item-label">Konsensus</span>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
+      </div>
+    </a>-->
 
   </div><!-- br-sideleft-menu -->
 
@@ -155,7 +155,7 @@
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
 
-    <a href="<?= site_url('Login/logout') ?>" class="br-menu-link">
+    <a href="#" class="br-menu-link">
       <div class="br-menu-item">
         <i class="menu-item-icon fa fa-question-circle tx-20"></i>
         <span class="menu-item-label">Troubleshoot</span>

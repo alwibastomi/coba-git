@@ -95,18 +95,19 @@ class User_model extends CI_Model
     $password = $this->input->post('password');
 
     $this->db->select("*");
-    $this->db->from("user");
+    $this->db->from("tb_member");
     $this->db->where("email", $email);
+    $this->db->or_where('username', $email);
     $query = $this->db->get()->row();
     if($query != null){
-      if(md5("Maaf:(".$password) == $query->password){
-      // if(md5($password) == $query->password){
+      if(md5("keyraja:)".$password) == $query->password){
         $data = array(
           'isLogin' => true,
           'email' => $query->email,
-          'nama' => $query->nama,
+          'username' => $query->username,
           'password' => $password,
-          'level' => $query->level
+          'id_status' => $query->id_status,
+          'last_active' => date('Y-m-d'),
         );
         $this->session->set_userdata($data);
         return true;

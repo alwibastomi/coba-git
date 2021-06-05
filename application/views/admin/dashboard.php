@@ -22,7 +22,7 @@
 <div class="br-mainpanel">
   <div class="pd-30">
     <h4 class="tx-gray-800 mg-b-5">Selamat Datang . .</h4>
-    <p class="mg-b-0">Selamat !!!, InsyaAlloh setelah ini, anda akan bisa merangking lebih banyak keyword, dan membuat artikel yang lebih lengkap dari kompetitor anda.. kecuali mereka pakai semanticarticle juga</p>
+    <p class="mg-b-0">Selamat !!!, InsyaAlloh setelah ini, anda akan bisa merangking lebih banyak keyword, dan membuat artikel yang lebih lengkap dari kompetitor anda.. kecuali mereka pakai keywordraja juga</p>
   </div><!-- d-flex -->
 
   <div class="br-pagebody mg-t-5 pd-x-30">
@@ -41,7 +41,7 @@
             <div class="card-header" role="tab" id="headingOne">
               <h6 class="mg-b-0">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="tx-gray-800 transition">
-                  <i class="fa fa-angle-double-right" aria-hidden="true"></i> Manfaat Tool Semantic article itu apa sih?
+                  <i class="fa fa-angle-double-right" aria-hidden="true"></i> Manfaat Tool keyword raja itu apa sih?
                 </a>
               </h6>
             </div><!-- card-header -->
@@ -100,7 +100,7 @@
               <div class="card-block pd-20">
                 <ul class="lulu">
 
-                  <li> Membahas rekomendasi topik dari semantic article, gunakan tool <b>Semantic Optimization</b>.</li>
+                  <li> Membahas rekomendasi topik dari keyword raja, gunakan tool <b>Semantic Optimization</b>.</li>
                   <li> Mengambil topik dari kompetitor yang relevan dan belum ada di artikel kita, Gunakan <b>Heading Spy</b>.</li>
                   <li> Membahas query yang sedang naik, Gunakan <b>Semantic Trend</b>.</li>
                 </ul>
@@ -146,8 +146,8 @@
                   <ul class="lulu">
 
                     <li> Anda harus ngaca, kalo website anda masih kecil, akan susah bersaing dengan kompetitor web besar, jadi pintar-pintarlah memilih keyword untuk di target, baca artikel tentang <b class="text-primary">analisa kompetitor</b></li>
-                    <li> Ambil list <b>keyword to rank</b> di semanticarticle kemudian Cek ranking dengan <b>rank tracker</b></li>
-                    <li> Rekomendasi keyword dan topik di semantic article jangan hanya dimasukin, tapi dibahas juga. </li>
+                    <li> Ambil list <b>keyword to rank</b> di keywordraja kemudian Cek ranking dengan <b>rank tracker</b></li>
+                    <li> Rekomendasi keyword dan topik di keyword raja jangan hanya dimasukin, tapi dibahas juga. </li>
                     <li> Sudah Merangking banyak keyword tapi traffic kok kecil, berarti anda tidak cek kelayakan volume pencarian di <b>trend semantic</b>.</li>
                   </ul>
 

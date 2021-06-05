@@ -10,20 +10,13 @@ class Core extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->helper('url','form');
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('user_model','m_activity','m_penulis', 'm_menu', 'admin_model', 
-			'm_iklan', 'm_rpp', 'm_artikel', 'm_trends'));
-		$this->restatus();
+		$this->load->model(array('m_trends', 'm_regis', 'm_member', 'user_model'));
 		$this->isLogin = $this->session->userdata('isLogin');
 	}
 
 	public function renderpage($view, $data = array())
 	{
-		$data['iklan1'] = $this->user_model->getDataIklan('iklan_js', '1.1');
-		$data['iklan2'] = $this->user_model->getDataIklan('iklan_js', '1.2');
-		$data['iklan3'] = $this->user_model->getDataIklan('iklan_js', '1.3');
-		$data['iklan4'] = $this->user_model->getDataIklan('iklan_js', '1.4');
-		$data['iklan5'] = $this->user_model->getDataIklan('iklan_js', '1.5');
-		$data['nama'] = $this->session->userdata('nama');
+		$data['username'] = $this->session->userdata('username');
 		$data['email'] = $this->session->userdata('email');
 		$data['level'] = $this->session->userdata('level');
 		$this->load->view('template_admin/header',$data);
@@ -38,9 +31,9 @@ class Core extends CI_Controller {
 	}
 
 	public function renderadm($view,$data = array()){
-		$data['nama'] = $this->session->userdata('nama');
+		$data['username'] = $this->session->userdata('username');
 		$data['email'] = $this->session->userdata('email');
-		$data['level'] = $this->session->userdata('level');
+		$data['id_status'] = $this->session->userdata('id_status');
 		$data['password'] = $this->session->userdata('password');
 		$this->load->view('template_admin/header',$data);
 		$this->load->view('template_admin/sidebar');
@@ -59,20 +52,6 @@ class Core extends CI_Controller {
 		// $this->load->view('template_admin/topbar',$data);
 		$this->load->view($view,$data);
 		$this->load->view('template_admin/footer');
-	}
-
-	public function restatus()
-	{
-		$la = $this->m_penulis->getAllPenulis();
-
-		foreach ($la as $key) {
-			$datee = date('Y-m-d');
-			if ($key->date_status >= $datee) {
-				$this->m_penulis->editstatus('1', $key->date_status);
-			}else{
-				$this->m_penulis->editstatus('0', $key->date_status);
-			}
-		}
 	}
 	
 }

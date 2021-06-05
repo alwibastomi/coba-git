@@ -9,7 +9,7 @@
     <meta name="description" content="semanticarticle.com">
     <meta name="author" content="ThemePixels">
 
-    <title>Semantic Article</title>
+    <title>Keyword Raja</title>
     <link rel="icon" href="<?= site_url('assets/images/Logo-01.png') ?>">
 
     <!-- vendor css -->
@@ -30,10 +30,15 @@
 
     <!-- JS -->
     <!-- <script type="text/javascript"> var BASE_URL = "<?php echo base_url();?>"; </script> -->
-    
+
 </head>
 <style>
     .btn-info{
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .br-menu-link.active{
         background-color: #17a2b8;
         border-color: #17a2b8;
     }

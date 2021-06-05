@@ -9,7 +9,7 @@
 
         <div class="form-group ">
             <div class="col-xs-12">
-                <input class="form-control" name="email" type="text" required="" placeholder="Email/Username">
+                <input class="form-control" name="email" type="email" required="" placeholder="Email">
             </div>
         </div>
 
@@ -36,7 +36,6 @@
                     <a href="page-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
                 </div>
             </div>
-            <div class="mg-t-40 tx-center">Belum mempunyai akun? <a href="<?= site_url('Register') ?>" class="tx-info">Daftar</a></div>
         </form>
     </div><!-- login-wrapper -->
 </div><!-- d-flex -->
